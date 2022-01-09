@@ -1,0 +1,97 @@
+﻿@model AvansasProject.Models.Users;
+@{
+    Layout = null;
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<title>Login</title>
+<script>
+
+    //$('#add').click(function () {
+    //    alert("Value : ");
+
+    //});
+
+    //$.ajax({
+    //    url: "~/Home/Loginvarmı",
+    //    type: "POST",
+    //    data: { foo: 'bar', bar: 'foo' },
+    //    success: success,
+    //    dataType: dataType
+    //});
+    console.log("emre");
+
+    $(document).ready(function () {
+        $("#btnSubmit").click(function () {
+            var email = $("#floatingInput").val();
+            var pass = $("#floatingPassword").val();
+            // alert("button");
+            $.ajax({
+                url: "Home/isLogin",
+                type: "POST",
+                data: { Email: email, Password: pass },
+               // dataType: 'json',
+             //   contentType: 'application/json; charset=utf-8',
+                success: function (datas) {
+                    console.log(datas);
+                    console.log(datas.success)
+                    if (datas.success) {
+                        if (datas.responseText=="1") {
+                            window.location.href = 'Home/Index';
+                        }
+                        if (datas.responseText == "2") {
+                            window.location.href = 'Home/IndexUser';
+                        }
+                      
+                        
+                        } if (!datas.success) {
+
+                        alert("datas.responseText");
+                    }    
+                }
+            });
+            // alert("button1");
+        });
+    });
+    
+</script>
+
+
+
+
+<div class="b-example-divider"></div>
+
+<div class="modal modal-signin position-static d-block bg-secondary py-5" tabindex="-1" role="dialog" id="modalSignin">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-5 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0">
+                <!-- <h5 class="modal-title">Modal title</h5> -->
+                <h2 class="fw-bold mb-3">Login</h2>
+
+            </div>
+
+            <div class="modal-body p-5 pt-0">
+
+                <div class="form-floating mb-3">
+                    <label for="floatingInput">Email:</label>
+                    <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com">
+
+                </div>
+                <div class="form-floating mb-3">
+                    <label for="floatingPassword">Password:</label>
+                    <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+
+                </div>
+                <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" id="btnSubmit">Sign up</button>
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

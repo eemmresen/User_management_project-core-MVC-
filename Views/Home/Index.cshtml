@@ -1,0 +1,82 @@
+﻿@model List<AvansasProject.Models.Users>
+<H1>  Kullanıcılar</H1>
+
+
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+    function myFunction(a) {
+        console.log("" + a);
+        let text = "Emin misiniz?!\nEither OK or Cancel.";
+        if (confirm(text) == true) {
+
+            window.location.href = "/Home/PersonDelete/" + a;
+
+        } else {
+
+        }
+
+    }
+
+    function myUpdateFunction(Email) {
+   
+
+            window.location.href = "/Home/PersonUpdate/" + Email;
+
+  
+
+    }
+
+
+    function mymetot(c) {
+        alert(c);
+
+    }
+
+
+
+
+</script>
+
+<a href="/Home/NewUser" class="btn btn-primary">Yeni personel</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">UserID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">UserRolID</th>
+            <th scope="col">BornDate</th>
+            <th scope="col">Delete</th>
+            <th scope="col">update</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <th scope="row"> @item.ID</th>
+            <td> @item.ID</td>
+            <td> @item.UserID</td>
+            <td> @item.Name</td>
+            <td> @item.Surname</td>
+            <td> @item.PhoneNumber</td>
+            <td> @item.UserRolID</td>
+            <td>@item.BornDate</td>
+            <td><button onclick="myFunction('@item.Email')" class="btn btn-danger">Delete</button></td>
+            <td><button onclick="myUpdateFunction('@item.Email')" class="btn btn-success">Update</button></td>
+        
+
+
+        </tr>
+        }
+    </tbody>
+</table>

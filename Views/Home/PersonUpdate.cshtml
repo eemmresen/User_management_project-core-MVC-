@@ -1,0 +1,74 @@
+﻿@model AvansasProject.Models.Users
+@{
+    ViewData["Title"] = "PersonUpdate";
+}
+
+<h1>PersonUpdate</h1>
+
+
+
+
+@using (Html.BeginForm("PersonUpdateSendDataView", "Home", FormMethod.Post))
+{
+    <b>ID :</b>
+    @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+      <br />
+      <br />
+    <b>UserID :</b>
+    <b>@Model.UserID</b>
+    <br />
+    <br />
+    @Html.LabelFor(x => x.UserID)
+   // @Html.TextBoxFor(x => x.UserID, new { @class = "form-control" })
+
+    <b>Name :</b>
+    @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    <br />
+    <b>Surname :</b>
+    @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+    <br />
+    <br />
+    <b>Email :</b>
+    <b>@Model.Email</b>
+      <br />
+    // @Html.LabelFor(x => x.Email)
+
+    //@Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+    <br />
+    <b>pass :</b>
+    @Html.TextBoxFor(x => x.pass, new { @class = "form-control" })
+    <br />
+    <b>BornDate :</b>
+    <div class="col-md-10">
+        @Html.EditorFor(x => x.BornDate, new { htmlAttributes = new { @class = "form-control" } })
+
+    </div>
+    <br />
+    <b>Phone Number :</b>
+    @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+    <br />
+    <b>UserRolID :</b>
+
+
+    @Html.DropDownListFor(
+            x => x.UserRolID,
+
+            new SelectList(
+            new List<Object>
+                {
+            new { value = 1 , text = "Admin"  },
+            new { value = 2 , text = "User" }
+
+                }, "value",
+                          "text"
+                )
+                )
+
+
+
+    <br />
+    <br />
+    <button class="btn btn-info">User Update</button>
+
+}
+

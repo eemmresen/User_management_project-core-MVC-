@@ -1,0 +1,170 @@
+﻿@model List<AvansasProject.Controllers.HomeController.AuthorizeRol.Roles>
+@{
+    ViewData["Title"] = "NewUser";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script>
+
+
+    $(document).ready(function () {
+        $("#btnfirstpage").click(function () {
+            var ID = $("#IDfirstpage").val();
+            console.log(ID + "");
+            var UserID = $("#UserID").val();
+            var Name = $("#Name").val();
+            var Surname = $("#Surname").val();
+            var Email = $("#Email").val();
+            var pass = $("#pass").val();
+            var BornDate = $("#BornDate").val();
+            var PhoneNumber = $("#PhoneNumber").val();
+            var UserRolID = $("#UserRolID").val();
+            // alert("button");
+            $.ajax({
+                url: "InsertNewUser",
+                type: "POST",
+                data: { ID: ID, UserID: UserID, Name: Name, Surname: Surname, Email: Email, pass: pass, BornDate: BornDate, PhoneNumber: PhoneNumber, UserRolID: UserRolID },
+                success: function (datas) {
+                    alert("Kişi Eklendi")
+                    window.location.href = 'Index';
+                },
+                fail: function (failler) {
+                    alert("hata oluştu");
+                }
+                });
+
+            });
+        });
+
+
+</script>
+
+
+
+<h1>NewUser</h1>
+<div class="form-group">
+    <label for="exampleInputEmail1">ID:</label>
+    <input type="text" class="form-control" id="IDfirstpage" aria-describedby="emailHelp" placeholder="Enter email">
+
+</div>
+
+<div class="form-group">
+    <label for="exampleInputEmail1">UserID</label>
+    <input type="email" class="form-control" id="UserID" aria-describedby="emailHelp" placeholder="Enter email">
+
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Name</label>
+    <input type="text" class="form-control" id="Name" placeholder="Password">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Surname</label>
+    <input type="text" class="form-control" id="Surname" placeholder="Password">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">Email</label>
+    <input type="text" class="form-control" id="Email" placeholder="Password">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">pass</label>
+    <input type="text" class="form-control" id="pass" placeholder="Password">
+</div>
+<div class="form-group">
+    <label for="exampleInputPassword1">BornDate</label>
+    <input type="text" class="form-control" id="BornDate" placeholder="Password">
+</div>
+
+<div class="form-group">
+    <label for="exampleInputPassword1">PhoneNumber</label>
+    <input type="text" class="form-control" id="PhoneNumber" placeholder="Password">
+</div>
+
+<div class="form-group">
+    <label for="exampleInputPassword1">UserRolID</label>
+    <select id="UserRolID">
+        @foreach (var item in Model)
+        {
+            <option value=@Convert.ToInt32(item)>@item.ToString()</option>
+
+
+
+        }
+    </select>
+</div>
+
+
+<button type="submit" class="btn btn-primary" id="btnfirstpage">Submit</button>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+
+@*<form class="form-group" method="post">
+
+
+
+        <b>ID :</b>
+        @Html.TextBoxFor(x => x.ID, new { @class = "form-control" })
+        @Html.ValidationMessage("ID", "Please enter ID", "text-danger")
+
+        <b>UserID :</b>
+        @Html.TextBoxFor(x => x.UserID, new { @class = "form-control" })
+        @Html.ValidationMessage("UserID", "Please enter UserID", "text-danger")
+
+        <b>Name :</b>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+        @Html.ValidationMessage("Name", "Please enter Name", "text-danger")
+
+        <br />
+        <b>Surname :</b>
+        @Html.TextBoxFor(x => x.Surname, new { @class = "form-control" })
+        @Html.ValidationMessage("Surname", "Please enter Surname", "text-danger")
+        <br />
+        <b>Email :</b>
+        @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        @Html.ValidationMessage("Email", "Please enter Email", "text-danger")
+        <br />
+        <b>pass :</b>
+        @Html.TextBoxFor(x => x.pass, new { @class = "form-control" })
+        @Html.ValidationMessage("pass", "Please enter pass", "text-danger")
+        <br />
+        <b>BornDate :</b>
+        <div class="col-md-10">
+            @Html.EditorFor(x => x.BornDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessage("BornDate", "Please enter BornDate", "text-danger")
+
+        </div>
+        <br />
+        <b>Phone Number :</b>
+        @Html.TextBoxFor(x => x.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessage("PhoneNumber", "Please enter PhoneNumber", "text-danger")
+        <br />
+        <b>UserRolID :</b>
+
+
+        @Html.DropDownListFor(
+            x => x.UserRolID,
+
+            new SelectList(
+            new List<Object>
+                {
+                new { value = 1 , text = "Admin"  },
+                new { value = 2 , text = "User" }
+
+                }, "value",
+                          "text"
+                )
+                )
+
+
+
+        <br />
+        <br />
+        <button class="btn btn-info">User Ekle</button>
+
+    </form>*@

@@ -1,0 +1,40 @@
+﻿@model List<AvansasProject.Models.Users>
+<H1>  Kullanıcılar</H1>
+
+
+
+
+
+<a href="/Home/NewUser" class="btn btn-primary">Yeni personel</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">ID</th>
+            <th scope="col">UserID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+            <th scope="col">PhoneNumber</th>
+            <th scope="col">UserRolID</th>
+            <th scope="col">BornDate</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row"> @item.ID</th>
+                <td> @item.ID</td>
+                <td> @item.UserID</td>
+                <td> @item.Name</td>
+                <td> @item.Surname</td>
+                <td> @item.PhoneNumber</td>
+                <td> @item.UserRolID</td>
+                <td>@item.BornDate</td>
+
+            </tr>
+        }
+    </tbody>
+</table>
